@@ -37,7 +37,7 @@ class CryptoTicker extends Component
         $coins = ['bitcoin', 'ethereum', 'dogecoin', 'solana', 'cardano', 'polkadot', 'ripple', 'chainlink','tether', 'usd-coin', 'bnb', 'xrp', 'tron', 'polygon', 'stellar', 'cosmos'];
         
         $formatted = [];
-        $theme = request()->cookie('theme', 'light');
+        
         $previousPrices = session('crypto_prices', []);
         session(['crypto_prices' => $currentPrices]);
     
@@ -50,7 +50,7 @@ class CryptoTicker extends Component
     
             $previous = $previousPrices[$coin]['usd'] ?? null;
             $symbol = '';
-            $color = $theme === 'light' ? 'dark' : 'light';
+            $color = 'white';
     
             if (!is_null($previous)) {
                 if ($current > $previous) {
@@ -74,10 +74,7 @@ class CryptoTicker extends Component
     }
 
     // Metodo per aggiornare il tema
-    public function updatedTheme()
-    {
-        $this->fetchPrices();
-    }
+    
 
     public function render()
     {
