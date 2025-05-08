@@ -1,3 +1,5 @@
+
+
 /* From Uiverse.io by JustCode14 */
 /* Theme Switch */
 /* Toggle per la dark/light mode */
@@ -123,4 +125,15 @@
     100% {
         transform: translateX(-50%);
     }
+}
+
+/* Card Section */
+.cardImg{
+
+    height: 12rem;
+    background-image: cover;
+}
+
+.cardText{
+    font-size: 0.8rem;
 }

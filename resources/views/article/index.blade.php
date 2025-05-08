@@ -1,5 +1,4 @@
 <x-layout>
-    <livewire:crypto-ticker />
     <x-nav />
     @if (session('message'))
         <div class="alert alert-success">

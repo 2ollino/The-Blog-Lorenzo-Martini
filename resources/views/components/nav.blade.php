@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="nav-link fw-bold fs-4 " href="#">Navbar</a>
+        <a class="nav-link fw-bold fs-4 " href="/">Navbar</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,12 +8,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 @guest
+
                     <li>
                         <a class="nav-link" href="{{ route('login') }}">Accedi</a>
                     </li>
                     <li>
                         <a class="nav-link" href="{{ route('register') }}">Registrati</a>
                     </li>
+                    
                 @else
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -41,6 +43,9 @@
                     </li>
 
                 @endguest
+                <li>
+                    <a class="nav-link" href="{{ route('article.index') }}">Tutti gli articoli</a>
+                </li>
                 <li>
                     <label class="switch">
                         <input checked="true" id="checkbox" type="checkbox" />

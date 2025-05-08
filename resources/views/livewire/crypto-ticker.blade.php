@@ -1,4 +1,4 @@
-<div wire:poll.60s>
+<div wire:poll.15s>
     {{-- If your happiness depends on money, you will never be happy with yourself. --}}
     <div class="ticker-wrapper py-2 bg-dark">
         <div class="ticker-track d-flex">

@@ -23,35 +23,35 @@ class CryptoTicker extends Component
             'ids' => 'bitcoin,ethereum,dogecoin,solana,cardano,polkadot,ripple,chainlink,tether,usd-coin,bnb,xrp,tron,polygon,stellar,cosmos',
             'vs_currencies' => 'usd'
         ]);
-    
-        
-        if (!$response->successful()) {
-            Log::error('CoinGecko API Error', ['status' => $response->status()]);
-            return view('home', ['prices' => []]);
-        }
-    
+
+
         $currentPrices = $response->json();
-    
+
+        if (!is_array($currentPrices)) {
+            Log::error('CoinGecko returned invalid JSON', ['response' => $currentPrices]);
+            $this->prices = [];
+            return;
+        }
         // Verifica che tutti i dati necessari siano presenti
-        
-        $coins = ['bitcoin', 'ethereum', 'dogecoin', 'solana', 'cardano', 'polkadot', 'ripple', 'chainlink','tether', 'usd-coin', 'bnb', 'xrp', 'tron', 'polygon', 'stellar', 'cosmos'];
-        
+
+        $coins = ['bitcoin', 'ethereum', 'dogecoin', 'solana', 'cardano', 'polkadot', 'ripple', 'chainlink', 'tether', 'usd-coin', 'bnb', 'xrp', 'tron', 'polygon', 'stellar', 'cosmos'];
+
         $formatted = [];
-        
+
         $previousPrices = session('crypto_prices', []);
         session(['crypto_prices' => $currentPrices]);
-    
+
         foreach ($coins as $coin) {
             $current = $currentPrices[$coin]['usd'] ?? null;
-    
+
             if (is_null($current)) {
                 continue; // Salta se il prezzo non è disponibile
             }
-    
+
             $previous = $previousPrices[$coin]['usd'] ?? null;
             $symbol = '';
             $color = 'white';
-    
+
             if (!is_null($previous)) {
                 if ($current > $previous) {
                     $symbol = '🔺';
@@ -61,7 +61,7 @@ class CryptoTicker extends Component
                     $color = 'red';
                 }
             }
-    
+
             $formatted[] = [
                 'name' => ucfirst($coin),
                 'price' => number_format($current, 2),
@@ -74,7 +74,7 @@ class CryptoTicker extends Component
     }
 
     // Metodo per aggiornare il tema
-    
+
 
     public function render()
     {

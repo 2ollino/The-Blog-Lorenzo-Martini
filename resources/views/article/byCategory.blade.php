@@ -1,12 +1,6 @@
 <x-layout>
     <livewire:crypto-ticker />
-    <x-nav />
-    @if (session('message'))
-        <div class="alert alert-success">
-            {{ session('message') }}
-        </div>
-    @endif
-
+    <x-nav2 />
     <div class="container p-4 bg-body-tertiary my-3 rounded-3" >
         <div class="row justify-content-center align-items-center">
             @foreach ($articles as $article)
@@ -16,6 +10,5 @@
             @endforeach
         </div>
     </div>
-
 
 </x-layout>
