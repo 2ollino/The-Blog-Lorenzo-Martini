@@ -2,7 +2,7 @@
     <x-nav2 />
     <div class="container p-4 ">
         <div class="row justify-content-center align-items-center">
-            <div class="col-8 card p-4">
+            <div class="col-12 col-md-8 card p-4">
                 <form class="row g-3" action="{{ route('article.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="col-md-6">

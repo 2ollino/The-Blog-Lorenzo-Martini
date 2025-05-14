@@ -16,6 +16,23 @@
                 </div>
                 <div class="col-6">
                     <p>{{ $article->body }}</p>
+                    @if (Auth::user() && Auth::user()->is_revisor)
+                        <div class="container my-3">
+                            <div class="row justify-content-center">
+                                <div class="col-5">
+                                    <form action="{{ route('revisor.acceptArticle', $article) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success">Accetta articolo</button>
+                                    </form>
+                                </div>
+                                <div class="col-5">
+                                    <form action="{{ route('revisor.rejectArticle', $article) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">Rifiuta articolo</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                 </div>
                 <div class="col-6">
                     <span class="text-muted">Redatto il {{ $article->created_at->format('d/m/Y') }} <br>

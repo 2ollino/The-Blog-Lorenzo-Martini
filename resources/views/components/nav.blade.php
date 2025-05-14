@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="nav-link fw-bold fs-4 " href="/">Navbar</a>
+        <a class="nav-link fw-bold fs-4 " href="/">TLSJ</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -16,6 +16,7 @@
                         <a class="nav-link" href="{{ route('register') }}">Registrati</a>
                     </li>
                     
+                    
                 @else
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -26,9 +27,16 @@
                             <li>
                                 <a class="dropdown-item" href="{{ route('article.create') }}">Crea Articolo</a>
                             </li>
+                            @if (Auth::user()->is_admin)
                             <li>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a>
                             </li>
+                            @endif
+                            @if (Auth::user()->is_revisor)
+                            <li>
+                                <a class="dropdown-item" href="{{ route('revisor.dashboard') }}">Dashboard</a>
+                            </li>
+                            @endif
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -46,6 +54,9 @@
                 <li>
                     <a class="nav-link" href="{{ route('article.index') }}">Tutti gli articoli</a>
                 </li>
+                <li>
+                        <a class="nav-link" href="{{ route('careers') }}">Lavora con noi</a>
+                    </li>
                 <li>
                     <label class="switch">
                         <input checked="true" id="checkbox" type="checkbox" />
