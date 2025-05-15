@@ -7,15 +7,18 @@
                     {{ session('message') }}
                 </div>
             @endif
-            <h2>Richieste di lavoro da approvare</h2>
-            <div class="col-4">
-                <x-request-table :articles="$unrevisionedArticles"  />
+            
+            <div class="col-8  my-4 border-bottom">
+                <h2>Articoli da approvare</h2>
+                <x-articles-table :articles="$unrevisionedArticles"  />
             </div>
-            <div class="col-4">
-                <x-request-table :articles="$acceptedArticles" />
+            <div class="col-8  my-4 border-bottom">
+                <h4>Articoli approvati</h4>
+                <x-articles-table :articles="$acceptedArticles" />
             </div>
-            <div class="col-4">
-                <x-request-table :articles="$rejectedArticles" />
+            <div class="col-8  my-4 border-bottom">
+                <h4>Articoli rifiutati</h4>
+                <x-articles-table :articles="$rejectedArticles" />
             </div>
         </div>
     </div>

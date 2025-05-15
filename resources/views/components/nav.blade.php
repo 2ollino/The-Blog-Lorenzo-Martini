@@ -29,17 +29,18 @@
                             </li>
                             @if (Auth::user()->is_admin)
                             <li>
-                                <a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                                <a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard Admin</a>
                             </li>
                             @endif
-                            @if (Auth::user()->is_revisor)
-                            <li>
-                                <a class="dropdown-item" href="{{ route('revisor.dashboard') }}">Dashboard</a>
-                            </li>
-                            @endif
+                            
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
+                            @if (Auth::user()->is_revisor)
+                            <li>
+                                <a class="dropdown-item" href="{{ route('revisor.dashboard') }}">Dashboard Revisore</a>
+                            </li>
+                            @endif
                             <li>
 
                                 <form action="{{ route('logout') }}" method="POST">
@@ -73,9 +74,9 @@
                     </label>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+            <form action="{{ route('article.search') }}" method="GET" class="d-flex" role="search">
+                <input class="form-control me-2" name="query" type="search" placeholder="Cerca" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Cerca</button>
             </form>
         </div>
     </div>

@@ -22,6 +22,7 @@
                             <button type="submit" class="btn btn-primary">Riporta in revisione</button>
                         </form>
                     @endif
+                    
                 </td>
             </tr>
         @endforeach

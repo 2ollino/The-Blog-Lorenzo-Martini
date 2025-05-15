@@ -3,7 +3,7 @@
     <div class="container my-3 bg-body-tertiary p-4 rounded-3">
         <div class="row">
             <div class="col-12 col-md-6">
-                <img src="{{ Storage::url($article->image) }}" alt="{{ $article->title }}">
+                <img src="{{ Storage::url($article->image) }}" alt="{{ $article->title }} " class="card-img-top ">
             </div>
             <div class="col-12 col-md-6">
                 <h2>{{ $article->title }}</h2>
@@ -14,7 +14,7 @@
                         <a href="{{route('article.byCategory', $article->category)}}" class="text-decoration-none text-capitalize">{{ $article->category->name }}</a>
                     </span>
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     <p>{{ $article->body }}</p>
                     @if (Auth::user() && Auth::user()->is_revisor)
                         <div class="container my-3">
@@ -33,6 +33,7 @@
                                 </div>
                             </div>
                         </div>
+                    @endif
                 </div>
                 <div class="col-6">
                     <span class="text-muted">Redatto il {{ $article->created_at->format('d/m/Y') }} <br>
