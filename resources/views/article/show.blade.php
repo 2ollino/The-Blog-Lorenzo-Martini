@@ -7,42 +7,68 @@
             </div>
             <div class="col-12 col-md-6">
                 <h2>{{ $article->title }}</h2>
-                <div>
-
-                    <p class="card-subtitle">{{ $article->subtitle }}</p>
-                    <span class="small text-muted">Categoria:
-                        <a href="{{route('article.byCategory', $article->category)}}" class="text-decoration-none text-capitalize">{{ $article->category->name }}</a>
-                    </span>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <p class="card-subtitle">{{ $article->subtitle }}</p>
+                        @if ($article->category)
+                            <span class="small text-muted">Categoria:
+                                <a href="{{ route('article.byCategory', $article->category) }}"
+                                    class="text-decoration-none text-capitalize">{{ $article->category->name }}</a>
+                            </span>
+                        @else
+                            <span class="small text-muted">Nessuna categoria</span>
+                        @endif
+                        
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="" for="">Tags:</label>
+                        <span class="small text-muted my-0">
+                            @foreach ($article->tags as $tag)
+                                #<a class="text-decoration-none" href="#">{{ $tag->name }}</a>
+                            @endforeach
+                        </span>
+                        <p class="text-muted my-0">Redatto il {{ $article->created_at->format('d/m/Y') }} <br>
+                            da <a class="text-decoration-none" href="#">{{ $article->user->name }}</a></p>
+                    </div>
                 </div>
-                <div class="col-12 col-md-6">
-                    <p>{{ $article->body }}</p>
-                    @if (Auth::user() && Auth::user()->is_revisor)
-                        <div class="container my-3">
-                            <div class="row justify-content-center">
-                                <div class="col-5">
-                                    <form action="{{ route('revisor.acceptArticle', $article) }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-success">Accetta articolo</button>
-                                    </form>
-                                </div>
-                                <div class="col-5">
-                                    <form action="{{ route('revisor.rejectArticle', $article) }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger">Rifiuta articolo</button>
-                                    </form>
+                <div class="col-12">
+                    <p class="my-1">{{ $article->body }}</p>
+
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        @if (Auth::user() && Auth::user()->is_revisor && is_null($article->is_accepted))
+                            <div class="container my-3">
+                                <div class="row justify-content-center">
+                                    <div class="col-5">
+                                        <form action="{{ route('revisor.acceptArticle', $article) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-success">Accetta articolo</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-5">
+                                        <form action="{{ route('revisor.rejectArticle', $article) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger">Rifiuta articolo</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endif
-                </div>
-                <div class="col-6">
-                    <span class="text-muted">Redatto il {{ $article->created_at->format('d/m/Y') }} <br>
-                        da <a class="text-decoration-none" href="#">{{ $article->user->name }}</a></span>
+                        @endif
+                    </div>
+                    <div class="col-12">
+
+                        <span><a class="text-decoration-none" href="{{ route('article.index') }}">Torna alla lista
+                                degli
+                                articoli</a></span>
+                    </div>
+
+
                 </div>
 
+
                 <div>
-                    <span><a class="text-decoration-none" href="{{ route('article.index') }}">Torna alla lista degli
-                            articoli</a></span>
+
                 </div>
 
             </div>

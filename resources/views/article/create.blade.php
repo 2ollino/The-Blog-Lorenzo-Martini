@@ -29,6 +29,14 @@
                         </select>
                     </div>
                     <div class="col-md-6">
+                        <label  class="form-label">Tags</label>
+                        <input type="text" class="form-control" name="tags" value="{{ old('tags') }}">
+                        <span class="text-muted fst-italic small">Tutti i tag devono essere separati da una virgola</span>
+                        @error('tags')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
                         <label  class="form-label">Immagine</label>
                         <input type="file" name="image" class="form-control" >
                         @error('image')
