@@ -41,6 +41,12 @@
                                 <a class="dropdown-item" href="{{ route('revisor.dashboard') }}">Dashboard Revisore</a>
                             </li>
                             @endif
+
+                            @if (Auth::user()->is_writer)
+                            <li>
+                                <a class="dropdown-item" href="{{ route('writer.dashboard') }}">Dashboard Scrittore</a>
+                            </li>
+                            @endif
                             <li>
 
                                 <form action="{{ route('logout') }}" method="POST">
