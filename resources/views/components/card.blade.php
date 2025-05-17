@@ -25,5 +25,6 @@
         <p>Redatto il {{ $article->created_at->format('d/m/Y') }} <br>
             da <a class="text-decoration-none"
                 href="{{ route('article.byUser', $article->user) }}">{{ $article->user->name }}</a></p>
+                <p class="card-subtitle text-muted fst-italic small">Tempo di lettura: {{ $article->readDuration() }}min</p>
     </div>
 </div>
